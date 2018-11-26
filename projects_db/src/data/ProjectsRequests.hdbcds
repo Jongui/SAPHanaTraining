@@ -1,0 +1,11 @@
+context ProjectsRequests {
+
+    /*@@layout{"layoutInfo":{"x":-221,"y":-172.5}}*/
+    entity ProjectRequest {
+        key PROJECTREQUESTID : String(10);
+            PROJECTNAME      : String(40);
+            PARTNER          : String(10);
+            STARTDATE        : LocalDate;
+            PLANNEDDAYS      : Integer;
+    };
+};
