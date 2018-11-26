@@ -9,7 +9,7 @@ modules:
     requires:
       - name: hdi_projects_db
         properties:
-          TARGET_CONTAINER: hdi-projects-name
+          TARGET_CONTAINER: '~{hdi-projects-name}'
       - name: openSAPHANA-uaa
   - name: projects_js
     type: nodejs
