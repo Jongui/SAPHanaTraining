@@ -1,24 +1,21 @@
 PROCEDURE "get_customer_projects_requests"(
 	IN iv_partner VARCHAR(10),
 	OUT et_partner_requests TABLE(
-		ProjectRequestID  NVARCHAR(10),
+		PROJECTREQUESTID  NVARCHAR(10),
 		PROJECTNAME NVARCHAR(40),
-    	Partner NVARCHAR(10),
+    	PARTNER NVARCHAR(10),
     	STARTDATE DATE,
-    	PlannedDays INTEGER
+    	PLANNEDDAYS INTEGER,
+    	ENDDATE DATE
 	)
 )
    LANGUAGE SQLSCRIPT
    SQL SECURITY INVOKER
-   --DEFAULT SCHEMA <default_schema_name>
    READS SQL DATA AS
 BEGIN
-   /*************************************
-       Write your procedure logic 
-   *************************************/
-   
-   et_partner_requests =	SELECT * FROM "ProjectsRequests.ProjectRequest"
-								WHERE PARTNER = iv_partner
-								ORDER BY PROJECTNAME;
-   
+   	et_partner_requests =	SELECT lcl.PROJECTREQUESTID, lcl.PROJECTNAME, lcl.PARTNER, lcl.STARTDATE, lcl.PLANNEDDAYS,
+    							   "calc_end_date"("STARTDATE", "PLANNEDDAYS") as ENDDATE
+    						  FROM "ProjectsRequests.ProjectRequest" as lcl
+							  WHERE PARTNER = iv_partner
+							    ORDER BY PROJECTNAME;
 END

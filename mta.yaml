@@ -10,6 +10,9 @@ modules:
    requires:
     - name: hdi_projects_db
 
+
+ 
+
 resources:
  - name: hdi_projects_db
    parameters:
