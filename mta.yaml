@@ -2,22 +2,35 @@ ID: ProjectOpportunities
 _schema-version: '2.0'
 description: List customers projects opportunities
 version: 0.0.1
-
 modules:
- - name: projects_db
-   type: hdb
-   path: projects_db
-   requires:
-    - name: hdi_projects_db
-
-
- 
-
+  - name: projects_db
+    type: hdb
+    path: projects_db
+    requires:
+      - name: hdi_projects_db
+        properties:
+          TARGET_CONTAINER: hdi-projects-name
+      - name: openSAPHANA-uaa
+  - name: projects_js
+    type: nodejs
+    path: projects_js
+    provides:
+      - name: projects_js_api
+        properties:
+          url: '${default-url}'
+    requires:
+      - name: openSAPHANA-uaa
+      - name: hdi_projects_db
+      - name: projects_db
 resources:
- - name: hdi_projects_db
-   parameters:
+  - name: openSAPHANA-uaa
+    type: com.sap.xs.uaa
+    parameters:
+      config_path: ./xs-security.json
+  - name: hdi_projects_db
+    parameters:
       config:
-         schema: ProjectsOpportunities
-   properties:
-      hdi-container-name: ${service-name}
-   type: com.sap.xs.hdi-container
+        schema: ProjectsOpportunities
+    properties:
+      hdi-projects-name: '${service-name}'
+    type: com.sap.xs.hdi-container
