@@ -1,0 +1,4 @@
+service{
+	"ProjectsRequests.ProjectRequest"
+		as "ProjectsRequests";
+}
