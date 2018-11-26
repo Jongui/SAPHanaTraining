@@ -12,6 +12,26 @@ sap.ui.define([
 		onInit: function() {
 			var oConfig = this.getOwnerComponent().getModel("config");
 			var userName = oConfig.getProperty("/UserName");
+			
+			var procedureUrl = "https://hxehost:51052/xsjs/CustomerProjects.xsjs?partnerId=";
+			
+			this.getOwnerComponent().getModel().setProperty("/procedureUrl", procedureUrl);
+			this.getOwnerComponent().getModel().setProperty("/partnerID", "partnerID");
+		},
+		
+		callProcedure: function(){
+			var procedureUrl = this.getOwnerComponent().getModel().getProperty("/procedureUrl");
+			var partnerID = this.getOwnerComponent().getModel().getProperty("/partnerID");
+			
+			procedureUrl += partnerID;
+			
+			var responseText = JSON.parse(jQuery.ajax({
+											url: procedureUrl,
+											method: "GET",
+											dataType: "json",
+											async: false
+										}).responseText);
+			
 		}
 	});
 });

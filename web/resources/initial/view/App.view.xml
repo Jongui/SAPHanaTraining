@@ -5,7 +5,13 @@
 			<u:ShellHeadUserItem image="sap-icon://person-placeholder" username="{config>/UserName}"/>
 		</u:user>
 		<u:content>
-			
+			<IconTabBar class="iconTabBarPaddingTop" upperCase="true" expanded="true">
+				<items>
+					<IconTabFilter text="Multi-Entity Read">
+						<core:Fragment fragmentName="initView.view.PartnerRead" type="XML"/>
+					</IconTabFilter>
+				</items>
+			</IconTabBar>
 		</u:content>
 	</u:Shell>
 </core:View>
