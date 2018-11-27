@@ -25,6 +25,25 @@ sap.ui.define([
 			
 		},
 		
+		onErrorCall: function(oError) {
+			if (oError.statusCode === 500 || oError.statusCode === 400 || oError.statusCode === "500" || oError.statusCode === "400") {
+				var errorRes = JSON.parse(oError.responseText);
+				if (!errorRes.error.innererror) {
+					sap.m.MessageBox.alert(errorRes.error.message.value);
+				} else {
+					if (!errorRes.error.innererror.message) {
+						sap.m.MessageBox.alert(errorRes.error.innererror.toString());
+					} else {
+						sap.m.MessageBox.alert(errorRes.error.innererror.message);
+					}
+				}
+				return;
+			} else {
+				sap.m.MessageBox.alert(oError.response.statusText);
+				return;
+			}
+		},
+		
 		callProcedure: function(){
 			var procedureUrl = this.getOwnerComponent().getModel().getProperty("/procedureUrl");
 			var partnerID = this.getOwnerComponent().getModel().getProperty("/partnerID");
@@ -79,14 +98,52 @@ sap.ui.define([
         		var row = new sap.m.ColumnListItem();
 
         		for(var k in obj) {
-        			row.addCell(new sap.m.Text({text : obj[k]}));
+        			if(k === "STARTDATE" || k === "ENDDATE"){
+        				var dateFormatFrom = sap.ui.core.format.DateFormat.getDateInstance({pattern : "yyyy-MM-dd" });
+        				var dateFormatTo = sap.ui.core.format.DateFormat.getDateInstance({pattern : "dd-MM-yyyy" });
+        				var dateStr = obj[k];
+        				var parsedDate = new Date(dateFormatFrom.parse(dateStr).getTime());
+        				dateStr = dateFormatTo.format(parsedDate);
+        				row.addCell(new sap.m.Text({text : dateStr}));
+        			} else {
+        				row.addCell(new sap.m.Text({text : obj[k]}));	
+        			}
         		}
 
         		return row;
     		});
 		},
+		
 		createProject: function(){
+			var dateFormatFrom = sap.ui.core.format.DateFormat.getDateInstance({pattern : "dd-MM-yyyy" });
+        	var dateFormatTo = sap.ui.core.format.DateFormat.getDateInstance({pattern : "yyyy-MM-dd" });
 			
+			var partnerIDCreate = this.getOwnerComponent().getModel().getProperty("/partnerIDCreate");
+			var projectNameCreate = this.getOwnerComponent().getModel().getProperty("/projectNameCreate");
+			var startDateCreate = this.getOwnerComponent().getModel().getProperty("/startDateCreate");
+			var plannedDaysCreate = this.getOwnerComponent().getModel().getProperty("/plannedDaysCreate");
+			var TZOffsetMs = new Date(0).getTimezoneOffset()*60*1000;
+			var parsedDate = new Date(dateFormatFrom.parse(startDateCreate).getTime() - TZOffsetMs);
+			
+			var oModel = this.getOwnerComponent().getModel("projectModel");
+			var result = this.getView().getModel().getData();
+			var oEntry = {};
+			oEntry.PROJECTREQUESTID = "0000000000";
+			oEntry.PROJECTNAME = projectNameCreate;
+			oEntry.PARTNER = partnerIDCreate;
+			oEntry.STARTDATE = parsedDate;
+			oEntry.PLANNEDDAYS = plannedDaysCreate;
+			
+			oModel.setHeaders({
+				"content-type": "application/json;charset=utf-8"
+			});
+			var mParams = {};
+			mParams.success = function() {
+				sap.m.MessageToast.show("Create successful");
+			};
+			mParams.error = this.onErrorCall;
+			oModel.create("/ProjectsRequests", oEntry, mParams);
+
 		}
 	});
 });

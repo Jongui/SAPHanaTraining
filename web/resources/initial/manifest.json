@@ -11,7 +11,16 @@
   	"description": "Customer Projects",
   	"applicationVersion": {
 			"version": "${project.version}"
-	}
+	},
+	"dataSources": {
+      "projectService": {
+        "uri": "/xsodata/projects.xsodata/",
+        "type": "OData",
+        "settings": {
+          "odataVersion": "2.0"
+        }
+      }
+    }
   },
   "sap.fiori": {
 	"_version": "2.0.0",
@@ -78,7 +87,18 @@
 			"settings": {
 				"bundleName": "initView.i18n.i18n"
 			}
-		}
+		},
+    	"projectModel": {
+        	"dataSource": "projectService",
+        	"type": "sap.ui.model.odata.v2.ODataModel",
+        	"preload": true,
+        	"settings": {
+        		"useBatch": false,
+        		"json": true,
+				"defaultBindingMode": "TwoWay",
+				"defaultUpdateMethod": "PUT"
+        	}
+    	}
     }
   }
 }
