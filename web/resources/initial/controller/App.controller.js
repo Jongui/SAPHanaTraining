@@ -17,6 +17,12 @@ sap.ui.define([
 			
 			this.getOwnerComponent().getModel().setProperty("/procedureUrl", procedureUrl);
 			this.getOwnerComponent().getModel().setProperty("/partnerID", "0000000001");
+			
+			this.getOwnerComponent().getModel().setProperty("/partnerIDCreate", "0000000001");
+			this.getOwnerComponent().getModel().setProperty("/projectNameCreate", "New Project online");
+			this.getOwnerComponent().getModel().setProperty("/startDateCreate", "2018-12-21");
+			this.getOwnerComponent().getModel().setProperty("/plannedDaysCreate", 30);
+			
 		},
 		
 		callProcedure: function(){
@@ -78,6 +84,9 @@ sap.ui.define([
 
         		return row;
     		});
+		},
+		createProject: function(){
+			
 		}
 	});
 });

@@ -1,0 +1,17 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
+		<List width="100%">
+			<InputListItem label="{i18n>partnerId}">
+				<Input id="partnerIDCreate" value="{/partnerIDCreate}"/>
+			</InputListItem>
+				<InputListItem label="{i18n>projectName}">
+				<Input id="projectNameCreate" value="{/projectNameCreate}"/>
+			</InputListItem>
+				<InputListItem label="{i18n>startDate}">
+				<Input id="startDateCreate" value="{/startDateCreate}"/>
+			</InputListItem>
+				<InputListItem label="{i18n>plannedDays}">
+				<Input id="plannedDaysCreate" value="{/plannedDaysCreate}"/>
+			</InputListItem>
+		</List>
+		<Button press="createProject" text="{i18n>create}"/>
+</core:FragmentDefinition>

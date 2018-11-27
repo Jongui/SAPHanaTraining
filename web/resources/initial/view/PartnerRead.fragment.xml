@@ -1,7 +1,7 @@
 <core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
 	
 		<List width="100%">
-			<InputListItem label="Partner ID">
+			<InputListItem label="{i18n>partnerId}">
 				<Input id="partnerId" value="{/partnerID}"/>
 			</InputListItem>
 		</List>
