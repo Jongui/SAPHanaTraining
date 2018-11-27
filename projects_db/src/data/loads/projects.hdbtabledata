@@ -1,0 +1,29 @@
+{
+	"format_version": 1,
+	"imports": [{
+		"target_table": "ProjectsRequests.ProjectRequest",
+		"source_data": {
+			"data_type": "CSV",
+			"file_name": "projects.csv",
+			"has_header": false,
+			"dialect": "HANA",
+			"type_config": {
+				"delimiter": ","
+			}
+		},
+		"import_settings": {
+			"import_columns": ["PROJECTREQUESTID",
+			"PROJECTNAME",
+			"PARTNER",
+			"STARTDATE",
+			"PLANNEDDAYS"]
+		},
+		"column_mappings": {
+			"PROJECTREQUESTID": 1,
+			"PROJECTNAME": 2,
+			"PARTNER": 3,
+			"STARTDATE": 4,
+			"PLANNEDDAYS": 5
+		}
+	}]
+}

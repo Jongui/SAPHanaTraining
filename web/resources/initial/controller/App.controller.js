@@ -13,7 +13,7 @@ sap.ui.define([
 			var oConfig = this.getOwnerComponent().getModel("config");
 			var userName = oConfig.getProperty("/UserName");
 			
-			var procedureUrl = "https://hxehost:51052/xsjs/CustomerProjects.xsjs?partnerId=";
+			var procedureUrl = "/xsjs/CustomerProjects.xsjs?partnerId=";
 			
 			this.getOwnerComponent().getModel().setProperty("/procedureUrl", procedureUrl);
 			this.getOwnerComponent().getModel().setProperty("/partnerID", "0000000001");

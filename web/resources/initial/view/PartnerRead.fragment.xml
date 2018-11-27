@@ -5,6 +5,6 @@
 				<Input id="partnerId" value="{/partnerID}"/>
 			</InputListItem>
 		</List>
-		<Button press="callProcedure" text="Search"/>
+		<Button press="callProcedure" text="{i18n>search}"/>
 
 </core:FragmentDefinition>

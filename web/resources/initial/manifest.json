@@ -4,6 +4,7 @@
   "sap.app": {
   	"_version": "1.4.0",
 	"type": "application",
+	"i18n": "i18n/i18n.properties",
 	"resources": "resources.json",
   	"id": "initialView",
   	"title": "View Projects by Customer",
@@ -71,8 +72,13 @@
     	},
     	"config": {
     		"type": "sap.ui.model.json.JSONModel"
-    	}
+    	},
+    	"i18n": {
+			"type": "sap.ui.model.resource.ResourceModel",
+			"settings": {
+				"bundleName": "initView.i18n.i18n"
+			}
+		}
     }
-
   }
 }
