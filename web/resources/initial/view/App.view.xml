@@ -7,8 +7,11 @@
 		<u:content>
 			<IconTabBar class="iconTabBarPaddingTop" upperCase="true" expanded="true">
 				<items>
-					<IconTabFilter text="Multi-Entity Read">
-						<core:Fragment fragmentName="initView.view.PartnerRead" type="XML"/>
+					<IconTabFilter text="Projects Search">
+						<Panel expandable="true" expanded="true" headerText="Search Projects by Customer">
+							<core:Fragment fragmentName="initView.view.PartnerRead" type="XML"/>
+							<core:Fragment fragmentName="initView.view.PartnerProjects" type="XML" />
+						</Panel>
 					</IconTabFilter>
 				</items>
 			</IconTabBar>

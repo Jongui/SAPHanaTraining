@@ -16,7 +16,7 @@ sap.ui.define([
 			var procedureUrl = "https://hxehost:51052/xsjs/CustomerProjects.xsjs?partnerId=";
 			
 			this.getOwnerComponent().getModel().setProperty("/procedureUrl", procedureUrl);
-			this.getOwnerComponent().getModel().setProperty("/partnerID", "partnerID");
+			this.getOwnerComponent().getModel().setProperty("/partnerID", "0000000001");
 		},
 		
 		callProcedure: function(){
@@ -32,6 +32,52 @@ sap.ui.define([
 											async: false
 										}).responseText);
 			
+			var aColumnData = [{
+        			columnId: "PROJECTREQUESTID",
+        			description: "Project ID"
+    			}, {
+        			columnId: "PROJECTNAME",
+        			description: "Name"
+    			}, {
+        			columnId: "PARTNER",
+        			description: "Partner ID"
+    			}, {
+        			columnId: "STARTDATE",
+        			description: "Start Date"
+    			}, {
+        			columnId: "PLANNEDDAYS",
+        			description: "Planned Days"
+    			}, {
+        			columnId: "ENDDATE",
+        			description: "End Date"
+    			}];
+
+			
+			var oModel = new sap.ui.model.json.JSONModel();
+			oModel.setData({
+        		columns: aColumnData,
+        		rows: responseText.ET_PARTNER_REQUESTS
+    		});
+    		
+    		var oTable = this.getView().byId("tblProjects");
+    		oTable.setModel(oModel);
+
+    		oTable.bindAggregation("columns", "/columns", function(index, context) {
+        		return new sap.m.Column({
+            		header: new sap.m.Label({text: context.getObject().description})
+        		});
+    		});
+
+    		oTable.bindItems("/rows", function(index, context) {
+        		var obj = context.getObject();
+        		var row = new sap.m.ColumnListItem();
+
+        		for(var k in obj) {
+        			row.addCell(new sap.m.Text({text : obj[k]}));
+        		}
+
+        		return row;
+    		});
 		}
 	});
 });
