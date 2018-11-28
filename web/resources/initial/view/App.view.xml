@@ -18,6 +18,11 @@
 							<core:Fragment fragmentName="initView.view.PartnerProjects" type="XML" />
 						</Panel>
 					</IconTabFilter>
+					<IconTabFilter text="{i18n>partnersInfo}">
+						<Panel expandable="true" expanded="true" headerText="{i18n>searchPartner}">
+							<core:Fragment fragmentName="initView.view.Partners" type="XML"/>
+						</Panel>
+					</IconTabFilter>
 				</items>
 			</IconTabBar>
 		</u:content>

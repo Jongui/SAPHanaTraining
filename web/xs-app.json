@@ -2,13 +2,22 @@
 	"welcomeFile": "initial/index.html",
 	"authenticationMethod": "route",
 	"routes": [{
-		"source": "(.*)(.xsjs)",
+		"source": "/projects/(.*)(.xsjs)",
 		"destination": "projects-backend",
 		"csrfProtection": false,
 		"authenticationType": "xsuaa"
 	}, {
-		"source": "(.*)(.xsodata)",
+		"source": "/projects/(.*)(.xsodata)",
 		"destination": "projects-backend",
+		"authenticationType": "xsuaa"
+	},{
+		"source": "/partners/(.*)(.xsjs)",
+		"destination": "partners-backend",
+		"csrfProtection": false,
+		"authenticationType": "xsuaa"
+	}, {
+		"source": "/partners/(.*)(.xsodata)",
+		"destination": "partners-backend",
 		"authenticationType": "xsuaa"
 	},{
 		"source" : "/(.*)",

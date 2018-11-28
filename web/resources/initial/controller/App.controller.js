@@ -13,7 +13,7 @@ sap.ui.define([
 			var oConfig = this.getOwnerComponent().getModel("config");
 			var userName = oConfig.getProperty("/UserName");
 			
-			var procedureUrl = "/xsjs/CustomerProjects.xsjs?partnerId=";
+			var procedureUrl = "projects/xsjs/CustomerProjects.xsjs?partnerId=";
 			
 			this.getOwnerComponent().getModel().setProperty("/procedureUrl", procedureUrl);
 			this.getOwnerComponent().getModel().setProperty("/partnerID", "0000000001");
@@ -22,6 +22,8 @@ sap.ui.define([
 			this.getOwnerComponent().getModel().setProperty("/projectNameCreate", "New Project online");
 			this.getOwnerComponent().getModel().setProperty("/startDateCreate", "2018-12-21");
 			this.getOwnerComponent().getModel().setProperty("/plannedDaysCreate", 30);
+			
+			this.loadAllPartners();
 			
 		},
 		
@@ -144,6 +146,33 @@ sap.ui.define([
 			mParams.error = this.onErrorCall;
 			oModel.create("/ProjectsRequests", oEntry, mParams);
 
+		},
+		loadAllPartners: function(){
+			
+			var oTable = this.getView().byId("tblPartners");
+			var columnList = new sap.m.ColumnListItem();
+			var oModel = new sap.ui.model.odata.ODataModel("/partners/xsodata/PartnersAddress.xsodata/", true); 
+			sap.ui.getCore().setModel(oModel, "partnerModel"); 
+			
+			var oMeta = sap.ui.getCore().getModel("partnerModel").getServiceMetadata();
+			
+			for ( var i = 0; i < oMeta.dataServices.schema[0].entityType[0].property.length; i++) {
+				var property = oMeta.dataServices.schema[0].entityType[0].property[i];
+                oTable.addColumn(new sap.m.Column({
+                    header: new sap.m.Label({
+                        text: property.name
+                    }),
+                    width: "125px"
+                }));
+                columnList.addCell(new sap.m.Text({
+                    text: {
+                        path: "partnerModel>"+property.name
+                    },
+                    name: property.name
+                }));
+			}
+			var sort1 = new sap.ui.model.Sorter("NAME"); 
+			oTable.bindItems({path: "partnerModel>/PartnersAddress", template: columnList, sorter: sort1 }); 
 		}
 	});
 });

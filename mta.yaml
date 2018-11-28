@@ -44,6 +44,12 @@ modules:
       - name: ui5_lib
         properties:
           ui5liburl: '~{url}'
+      - name: partners_js_api
+        group: destinations
+        properties:
+          name: partners-backend
+          url: '~{url}'
+          forwardAuthToken: true
   - name: partners_js
     type: nodejs
     path: partners_js
