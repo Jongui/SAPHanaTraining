@@ -36,6 +36,13 @@ modules:
       - name: ui5_lib
         properties:
           ui5liburl: '~{url}'
+
+  - name: partners_db
+    type: hdb
+    path: partners_db
+    requires:
+     - name: hdi_partners_db
+
 resources:
   - name: openSAPHANA-uaa
     type: com.sap.xs.uaa
@@ -53,3 +60,9 @@ resources:
     parameters:
       provider-id: 'com.sap.ui5.dist.sapui5-dist-xsa.XSAC_UI5_FESV3:sapui5_fesv3'
       version: '>=1.44.8'
+
+  - name: hdi_partners_db
+    properties:
+       hdi-container-name: ${service-name}
+    type: com.sap.xs.hdi-container
+

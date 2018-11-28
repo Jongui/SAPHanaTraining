@@ -1,0 +1,49 @@
+{
+    "format_version": 1,
+    "imports": [
+        {
+            "target_table": "Partners.Addresses",
+            "source_data": {
+                "data_type": "CSV",
+                "file_name": "Addresses.csv",
+                "has_header": false
+            },
+            "import_settings": {
+                "import_columns": [
+                    "ADDRESSID",
+					"STREET",
+					"NUMBER",
+					"COUNTRY"
+                ]
+	        },
+			"column_mappings": {
+				"ADDRESSID": 1,
+				"STREET": 2,
+				"NUMBER": 3,
+				"COUNTRY": 4
+			}
+        },
+        {
+            "target_table": "Partners.Partners",
+            "source_data": {
+                "data_type": "CSV",
+                "file_name": "Partners.csv",
+                "has_header": false
+            },
+            "import_settings": {
+                "import_columns": [
+                    "PARTNERID",
+					"NAME",
+					"EMAIL",
+					"ADDRESSID"
+                ]
+            },
+			"column_mappings": {
+				"PARTNERID": 1,
+				"NAME": 2,
+				"EMAIL": 3,
+				"ADDRESSID": 4
+			}
+        }
+    ]
+}

@@ -1,0 +1,18 @@
+context Partners {
+    /*@@layout{"layoutInfo":{"x":-221,"y":-172.5}}*/
+    entity Partners {
+        key PARTNERID     : String(10);
+            NAME          : String(40);
+            EMAIL         : String(40);
+        	ADDRESSID : String(10);
+        	address : Association[1] to Addresses on address.ADDRESSID = ADDRESSID;
+    };
+
+    entity Addresses {
+        key ADDRESSID : String(10);
+        	STREET    : String(40);
+            NUMBER    : Integer;
+            COUNTRY   : String(3);
+            partner : Association[1] to Partners on partner.ADDRESSID = ADDRESSID;
+    };
+};
