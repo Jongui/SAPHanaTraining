@@ -1,0 +1,3 @@
+service{
+	"PartnersAddress" as "PartnersAddress" key ("NAME");
+}
