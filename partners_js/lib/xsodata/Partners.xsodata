@@ -1,0 +1,10 @@
+service {
+    "Partners.Partners" 
+	  as "Partners" navigates ("address" as "Adress");
+	  
+	"Partners.Addresses" 
+	  as "Adress";
+	  
+	association "address" principal  "Partners"("ADDRESSID")
+	multiplicity "1" dependent "Adress"("ADDRESSID") multiplicity "1";
+}

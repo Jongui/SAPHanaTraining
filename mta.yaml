@@ -44,7 +44,17 @@ modules:
       - name: ui5_lib
         properties:
           ui5liburl: '~{url}'
-
+  - name: partners_js
+    type: nodejs
+    path: partners_js
+    provides:
+      - name: partners_js_api
+        properties:
+          url: '${default-url}'
+    requires:
+      - name: openSAPHANA-uaa
+      - name: hdi_partners_db
+      - name: partners_db
 resources:
   - name: openSAPHANA-uaa
     type: com.sap.xs.uaa
@@ -67,6 +77,5 @@ resources:
       config:
         schema: ProjectsOpportunities
     properties:
-       hdi-partners-name: '${service-name}'
+      hdi-partners-name: '${service-name}'
     type: com.sap.xs.hdi-container
-
