@@ -128,7 +128,7 @@ sap.ui.define([
 			var oModel = this.getOwnerComponent().getModel("projectModel");
 			var result = this.getView().getModel().getData();
 			var oEntry = {};
-			oEntry.PROJECTREQUESTID = "0000000000";
+			oEntry.PROJECTREQUESTID = "0000000001";
 			oEntry.PROJECTNAME = projectNameCreate;
 			oEntry.PARTNER = partnerIDCreate;
 			oEntry.STARTDATE = parsedDate;
