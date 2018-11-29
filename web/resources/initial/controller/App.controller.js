@@ -23,6 +23,12 @@ sap.ui.define([
 			this.getOwnerComponent().getModel().setProperty("/startDateCreate", "2018-12-21");
 			this.getOwnerComponent().getModel().setProperty("/plannedDaysCreate", 30);
 			
+			this.getOwnerComponent().getModel().setProperty("/partnerNameCreate", "Dyck Informatique");
+			this.getOwnerComponent().getModel().setProperty("/partnerEmailCreate", "dyck@informatique.fr");
+			this.getOwnerComponent().getModel().setProperty("/partnerStreetCreate", "Rue Duschamps");
+			this.getOwnerComponent().getModel().setProperty("/partnerNumberCreate", "689");
+			this.getOwnerComponent().getModel().setProperty("/partnerCountryCreate", "FRA");
+			
 			this.loadAllPartners();
 			
 		},
@@ -173,7 +179,30 @@ sap.ui.define([
 			fnLoadMetadata();
 		},
 		createPartner: function(){
+			
+			var partnerNameCreate = this.getOwnerComponent().getModel().getProperty("/partnerNameCreate");
+			var partnerEmailCreate = this.getOwnerComponent().getModel().getProperty("/partnerEmailCreate");
+			var partnerStreetCreate = this.getOwnerComponent().getModel().getProperty("/partnerStreetCreate");
+			var partnerNumberCreate = this.getOwnerComponent().getModel().getProperty("/partnerNumberCreate");
+			var partnerCountryCreate = this.getOwnerComponent().getModel().getProperty("/partnerCountryCreate");
+			
 			var oModel = this.getOwnerComponent().getModel("partnerModel");
+			var oAddress = {};
+			oAddress.ADDRESSID = "0000000004";
+			oAddress.STREET = partnerStreetCreate;
+			oAddress.NUMBER = partnerNumberCreate;
+			oAddress.COUNTRY = partnerCountryCreate;
+			
+			oModel.setHeaders({
+				"content-type": "application/json;charset=utf-8"
+			});
+			var mParams = {};
+			mParams.success = function() {
+				sap.m.MessageToast.show("Create successful");
+			};
+			mParams.error = this.onErrorCall;
+			oModel.create("/Address", oAddress, mParams);
+			
 		}
 	});
 });
