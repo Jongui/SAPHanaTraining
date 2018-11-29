@@ -1,4 +1,8 @@
-<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
-	<Table id="tblPartners">
-	</Table>
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:smartTable="sap.ui.comp.smarttable">
+	<smartTable:SmartTable id="tblPartners" header="{i18n>partnersList}" editable="false" showRowCount="true" enableAutoBinding="true"
+				showFullScreenButton="true" tableType="Table">
+		<smartTable:layoutData>
+			<FlexItemData growFactor="1" baseSize="0%"/>
+		</smartTable:layoutData>
+	</smartTable:SmartTable>
 </core:FragmentDefinition>

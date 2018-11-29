@@ -1,0 +1,20 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
+		<List width="100%">
+			<InputListItem label="{i18n>partnerName}">
+				<Input id="partnerNameCreate" value="{/partnerNameCreate}"/>
+			</InputListItem>
+				<InputListItem label="{i18n>partnerEmail}">
+				<Input id="partnerEmailCreate" value="{/partnerEmailCreate}"/>
+			</InputListItem>
+				<InputListItem label="{i18n>partnerStreet}">
+				<Input id="partnerStreetCreate" value="{/partnerStreetCreate}"/>
+			</InputListItem>
+			<InputListItem label="{i18n>partnerNumber}">
+				<Input id="partnerNumberCreate" value="{/partnerNumberCreate}"/>
+			</InputListItem>
+			<InputListItem label="{i18n>partnerCountry}">
+				<Input id="partnerCountryCreate" value="{/partnerCountryCreate}"/>
+			</InputListItem>
+		</List>
+		<Button press="createPartner" text="{i18n>create}"/>
+</core:FragmentDefinition>

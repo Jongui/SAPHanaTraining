@@ -19,8 +19,11 @@
 						</Panel>
 					</IconTabFilter>
 					<IconTabFilter text="{i18n>partnersInfo}">
-						<Panel expandable="true" expanded="true" headerText="{i18n>searchPartner}">
+						<Panel expandable="true" expanded="false" headerText="{i18n>searchPartner}">
 							<core:Fragment fragmentName="initView.view.Partners" type="XML"/>
+						</Panel>
+						<Panel expandable="true" expanded="false" headerText="{i18n>newPartner}">
+							<core:Fragment fragmentName="initView.view.NewPartner" type="XML"/>
 						</Panel>
 					</IconTabFilter>
 				</items>

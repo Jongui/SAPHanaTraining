@@ -150,29 +150,30 @@ sap.ui.define([
 		loadAllPartners: function(){
 			
 			var oTable = this.getView().byId("tblPartners");
-			var columnList = new sap.m.ColumnListItem();
-			var oModel = new sap.ui.model.odata.ODataModel("/partners/xsodata/PartnersAddress.xsodata/", true); 
-			sap.ui.getCore().setModel(oModel, "partnerModel"); 
+			var oModel = this.getOwnerComponent().getModel("partnerAddressModel");
 			
-			var oMeta = sap.ui.getCore().getModel("partnerModel").getServiceMetadata();
-			
-			for ( var i = 0; i < oMeta.dataServices.schema[0].entityType[0].property.length; i++) {
-				var property = oMeta.dataServices.schema[0].entityType[0].property[i];
-                oTable.addColumn(new sap.m.Column({
-                    header: new sap.m.Label({
-                        text: property.name
-                    }),
-                    width: "125px"
-                }));
-                columnList.addCell(new sap.m.Text({
-                    text: {
-                        path: "partnerModel>"+property.name
-                    },
-                    name: property.name
-                }));
+			function fnLoadMetadata() {
+				try {
+					oTable.setModel(oModel);
+					oTable.setEntitySet("PartnersAddress");
+					var oMeta = oModel.getServiceMetadata();
+					var headerFields = "";
+					for (var i = 0; i < oMeta.dataServices.schema[0].entityType[0].property.length; i++) {
+						var property = oMeta.dataServices.schema[0].entityType[0].property[i];
+						headerFields += property.name + ",";
+					}
+					oTable.setInitiallyVisibleFields(headerFields);
+				} catch (e) {
+					console.log(e.toString());
+				}
 			}
-			var sort1 = new sap.ui.model.Sorter("NAME"); 
-			oTable.bindItems({path: "partnerModel>/PartnersAddress", template: columnList, sorter: sort1 }); 
+			oModel.attachMetadataLoaded(oModel, function() {
+				fnLoadMetadata();
+			});
+			fnLoadMetadata();
+		},
+		createPartner: function(){
+			var oModel = this.getOwnerComponent().getModel("partnerModel");
 		}
 	});
 });

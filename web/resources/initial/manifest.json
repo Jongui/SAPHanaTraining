@@ -20,12 +20,19 @@
           "odataVersion": "2.0"
         }
       },
-      "partnerService": {
+      "partnerAddressService": {
         "uri": "/partners/xsodata/PartnersAddress.xsodata/",
         "type": "OData",
         "settings": {
           "odataVersion": "2.0"
         }
+      },
+      "partnerService": {
+      	"uri": "/partners/xsodata/Partners.xsodata/",
+      	"type": "OData",
+      	"settings":{
+      		"odataVersion": "2.0"
+      	}
       }
     }
   },
@@ -95,8 +102,8 @@
 				"bundleName": "initView.i18n.i18n"
 			}
 		},
-    	"partnerModel": {
-        	"dataSource": "partnerService",
+    	"partnerAddressModel": {
+        	"dataSource": "partnerAddressService",
         	"type": "sap.ui.model.odata.v2.ODataModel",
         	"preload": true,
         	"settings": {
@@ -105,6 +112,17 @@
 				"defaultBindingMode": "TwoWay",
 				"defaultUpdateMethod": "PUT"
         	}
+    	},
+    	"partnerModel":{
+    		"dataSource": "partnerService",
+    		"type": "sap.ui.model.odata.v2.ODataModel",
+    		"preload": true,
+    		"settings": {
+    			"useBatch": false,
+        		"json": true,
+				"defaultBindingMode": "TwoWay",
+				"defaultUpdateMethod": "PUT"
+    		}
     	},
     	"projectModel": {
         	"dataSource": "projectService",
