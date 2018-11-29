@@ -1,8 +1,8 @@
 /*eslint no-console: 0, no-unused-vars: 0, dot-notation: 0, no-use-before-define: 0, no-redeclare: 0*/
 "use strict";
 
-$.import("xsjs", "session");
-var SESSIONINFO = $.xsjs.session;
+$.import("projects.xsjs", "session");
+var SESSIONINFO = $.projects.xsjs.session;
 
 /**
 @param {connection} Connection - The SQL connection used in the OData request

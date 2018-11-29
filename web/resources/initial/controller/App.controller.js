@@ -13,7 +13,7 @@ sap.ui.define([
 			var oConfig = this.getOwnerComponent().getModel("config");
 			var userName = oConfig.getProperty("/UserName");
 			
-			var procedureUrl = "projects/xsjs/CustomerProjects.xsjs?partnerId=";
+			var procedureUrl = "/projects/xsjs/CustomerProjects.xsjs?partnerId=";
 			
 			this.getOwnerComponent().getModel().setProperty("/procedureUrl", procedureUrl);
 			this.getOwnerComponent().getModel().setProperty("/partnerID", "0000000001");
@@ -136,7 +136,7 @@ sap.ui.define([
 			var oModel = this.getOwnerComponent().getModel("projectModel");
 			var result = this.getView().getModel().getData();
 			var oEntry = {};
-			oEntry.PROJECTREQUESTID = "0000000001";
+			oEntry.PROJECTREQUESTID = "0000000007";
 			oEntry.PROJECTNAME = projectNameCreate;
 			oEntry.PARTNER = partnerIDCreate;
 			oEntry.STARTDATE = parsedDate;

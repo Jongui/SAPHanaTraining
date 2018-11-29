@@ -2,5 +2,5 @@ service{
 	"ProjectsRequests.ProjectRequest"
 		as "ProjectsRequests"
 	create using 
-	"xsjs:projectCreateMethod.xsjslib::projectCreate";
+		"projects.xsjs:projectCreateMethod.xsjslib::projectCreate";
 }
