@@ -1,6 +1,6 @@
 /*eslint no-console: 0, no-unused-vars: 0, dot-notation: 0, no-use-before-define: 0, no-redeclare: 0*/
 "use strict";
-
+var lastAddressIdCreated;
 /**  
 @function Outputs the Session user and Language as JSON in the Response body
 */
@@ -228,4 +228,12 @@ function recordSetToJSON(rs,rsName){
 	}
 	return 	JSON.parse("{\""+ rsName +"\" : [" + table	+"]}");
 
+}
+
+function padWithZeroes(number, length) {
+    var my_string = '' + number;
+    while (my_string.length < length) {
+        my_string = '0' + my_string;
+    }
+    return my_string;
 }

@@ -9,41 +9,41 @@ var SESSIONINFO = $.partners.xsjs.session;
 @param {beforeTableName} String - The name of a temporary table with the single entry before the operation (UPDATE and DELETE events only)
 @param {afterTableName} String -The name of a temporary table with the single entry after the operation (CREATE and UPDATE events only)
 */
-function addressCreate(param) {
-
+function partnerCreate(param) {
+	
 	try {
 		var after = param.afterTableName;
 
 		//Get Input New Record Values
 		var pStmt = param.connection.prepareStatement("select * from \"" + after + "\"");
 		var rs = null;
-		var address = SESSIONINFO.recordSetToJSON(pStmt.executeQuery(), "Details");
+		var partner = SESSIONINFO.recordSetToJSON(pStmt.executeQuery(), "Details");
 		pStmt.close();
-        console.log(JSON.stringify(address));  
-        console.log(address.Details[0].PROJECTNAME);
+        console.log(JSON.stringify(partner));  
+        console.log(partner.Details[0].NAME);
 
 		//Get Next Personnel Number
-		pStmt = param.connection.prepareStatement("select \"addressId\".NEXTVAL from dummy");
+		pStmt = param.connection.prepareStatement("select \"partnerId\".NEXTVAL from dummy");
 		var rs = pStmt.executeQuery();
-		var addressID = "";
+		var partnerID = "";
 		while (rs.next()) {
-			addressID = rs.getString(1);
+			partnerID = rs.getString(1);
 		} 
 		pStmt.close();
-		pStmt = param.connection.prepareStatement("insert into \"Partners.Addresses\" " +
-													"(\"ADDRESSID\", \"STREET\", \"NUMBER\", \"COUNTRY\") " +
+		
+		pStmt = param.connection.prepareStatement("insert into \"Partners.Partners\" " +
+													"(\"PARTNERID\", \"NAME\", \"EMAIL\", \"ADDRESSID\") " +
 													"values(?,?,?,?)");
-		var formattedAddressID = SESSIONINFO.padWithZeroes(addressID, 10);
-		pStmt.setString(1, formattedAddressID.toString());
-		pStmt.setString(2, address.Details[0].STREET.toString());
-		pStmt.setString(3, address.Details[0].NUMBER.toString());
-		pStmt.setString(4, address.Details[0].COUNTRY.toString());
+		var formattedPartnerID = SESSIONINFO.padWithZeroes(partnerID, 10);
+		pStmt.setString(1, formattedPartnerID.toString());
+		pStmt.setString(2, partner.Details[0].NAME.toString());
+		pStmt.setString(3, partner.Details[0].EMAIL.toString());
 
 		pStmt.executeUpdate();
 		pStmt.close();
 		
-		/*pStmt = param.connection.prepareStatement("update \"" + after + "\" set ADDRESSID = ?" );
-		pStmt.setString(1, formattedAddressID);
+		/*pStmt = param.connection.prepareStatement("update \"" + after + "\" set partnerID = ?" );
+		pStmt.setString(1, formattedpartnerID);
     	pStmt.executeUpdate();
     	pStmt.close();*/
 
@@ -51,4 +51,5 @@ function addressCreate(param) {
 		console.error(e);
 		throw e;
 	}
+	
 }
