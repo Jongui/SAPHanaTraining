@@ -197,7 +197,7 @@ sap.ui.define([
 				"content-type": "application/json;charset=utf-8"
 			});
 			var mParams = {};
-			mParams.success = function() {
+			mParams.success = function(odata,oResponse) {
 				sap.m.MessageToast.show("Create successful");
 			};
 			mParams.error = this.onErrorCall;

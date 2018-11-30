@@ -1,9 +1,10 @@
 service {
-    "Partners.Partners" 
-	  as "Partners" navigates ("address" as "Address");
+    "Partners.Partners" as "Partners"
+    	navigates ("address" as "Address");
 	  
-	"Partners.Addresses" 
-	  as "Address";
+	"Partners.Addresses" as "Address"
+		create using
+			"partners.xsjs:addressCreateMethod.xsjslib::addressCreate";
 	  
 	association "address" principal  "Partners"("ADDRESSID")
 	multiplicity "1" dependent "Address"("ADDRESSID") multiplicity "1";
