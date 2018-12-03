@@ -10,7 +10,7 @@ modules:
       - name: hdi_partners_db
         properties:
           TARGET_CONTAINER: '~{hdi-partners-name}'
-      - name: openSAPHANA-uaa
+      - name: project_opportunities-uaa
   - name: projects_db
     type: hdb
     path: projects_db
@@ -18,7 +18,7 @@ modules:
       - name: hdi_projects_db
         properties:
           TARGET_CONTAINER: '~{hdi-projects-name}'
-      - name: openSAPHANA-uaa
+      - name: project_opportunities-uaa
   - name: projects_js
     type: nodejs
     path: projects_js
@@ -27,14 +27,14 @@ modules:
         properties:
           url: '${default-url}'
     requires:
-      - name: openSAPHANA-uaa
+      - name: project_opportunities-uaa
       - name: hdi_projects_db
       - name: projects_db
   - name: web
     type: html5
     path: web
     requires:
-      - name: openSAPHANA-uaa
+      - name: project_opportunities-uaa
       - name: projects_js_api
         group: destinations
         properties:
@@ -58,11 +58,11 @@ modules:
         properties:
           url: '${default-url}'
     requires:
-      - name: openSAPHANA-uaa
+      - name: project_opportunities-uaa
       - name: hdi_partners_db
       - name: partners_db
 resources:
-  - name: openSAPHANA-uaa
+  - name: project_opportunities-uaa
     type: com.sap.xs.uaa
     parameters:
       config_path: ./xs-security.json
