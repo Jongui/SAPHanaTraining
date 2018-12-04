@@ -1,15 +1,15 @@
 {
 	"xsappname": "ProjectOpportunities",
 	"scopes": [ 
-		{ "name": "$XSAPPNAME.view", "description": "View data" },
-	    { "name": "$XSAPPNAME.create", "description": "Create data"}
+		{ "name": "$XSAPPNAME.viewPartners", "description": "View partners" },
+	    { "name": "$XSAPPNAME.createPartners", "description": "Create partners"}
 	],
 	"role-templates": [
-		{ "name": "ProjectOpportunitiesView",
+		{ "name": "ProjectOpportunitiesViewPartners",
 		  "description": "Role for viewing data",
-		  "scope-references": [ "$XSAPPNAME.view" ] },
-		{ "name": "ProjectOpportunitiesCreate",
+		  "scope-references": [ "$XSAPPNAME.viewPartners" ] },
+		{ "name": "ProjectOpportunitiesCreatePartners",
 	      "description": "Role for creating data",
-		  "scope-references": [ "$XSAPPNAME.create","$XSAPPNAME.view" ] }
+		  "scope-references": [ "$XSAPPNAME.createPartners","$XSAPPNAME.viewPartners" ] }
     ]
 }
