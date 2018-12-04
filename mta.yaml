@@ -50,6 +50,12 @@ modules:
           name: partners-backend
           url: '~{url}'
           forwardAuthToken: true
+      - name: system_js_api
+        group: destinations
+        properties:
+          name: system-backend
+          url: '~{url}'
+          forwardAuthToken: true
   - name: partners_js
     type: nodejs
     path: partners_js
@@ -61,6 +67,15 @@ modules:
       - name: project_opportunities-uaa
       - name: hdi_partners_db
       - name: partners_db
+  - name: system_js
+    type: nodejs
+    path: system_js
+    provides:
+      - name: system_js_api
+        properties:
+          url: '${default-url}'
+    requires:
+      - name: project_opportunities-uaa
 resources:
   - name: project_opportunities-uaa
     type: com.sap.xs.uaa

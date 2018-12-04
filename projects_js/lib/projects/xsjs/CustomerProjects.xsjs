@@ -10,7 +10,12 @@ function callProcedure(partnerId){
 	$.response.contentType = "application/json";
 	$.response.setBody(JSON.stringify(results));
 }
-
-var aCmd = $.request.parameters.get("cmd");
-var partnerId = $.request.parameters.get("partnerId");
-callProcedure(partnerId);
+try {
+	$.session.assertAppPrivilege("createProjects");
+	var aCmd = $.request.parameters.get("cmd");
+	var partnerId = $.request.parameters.get("partnerId");
+	callProcedure(partnerId);
+} catch (e) {
+	console.error(e);
+	throw e;
+}

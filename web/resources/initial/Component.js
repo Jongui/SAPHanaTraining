@@ -28,7 +28,7 @@ sap.ui.define([
 		},
 
 		getSessionInfo: function() {
-			var aUrl = "/projects/xsjs/SessionInfo.xsjs?cmd=getSessionInfo";
+			var aUrl = "/system/xsjs/SessionInfo.xsjs?cmd=getSessionInfo";
 			this.onLoadSession(
 				JSON.parse(jQuery.ajax({
 					url: aUrl,

@@ -2,9 +2,16 @@
 	"welcomeFile": "initial/index.html",
 	"authenticationMethod": "route",
 	"routes": [{
-		"source": "/projects/(.*)",
+		"source": "/projects/(.*)(.xsjs)",
 		"destination": "projects-backend",
 		"csrfProtection": false,
+		"scope":"$XSAPPNAME.createProjects",
+		"authenticationType": "xsuaa"
+	},{
+		"source": "/projects/(.*)(.xsodata)",
+		"destination": "projects-backend",
+		"csrfProtection": false,
+		"scope":"$XSAPPNAME.viewProjects",
 		"authenticationType": "xsuaa"
 	},{
 		"source": "/partners/(.*)(.xsjs)",
@@ -19,9 +26,15 @@
 		"scope": "$XSAPPNAME.viewPartners",
 		"authenticationType": "xsuaa"
 	},{
+		"source": "/system/(.*)(.xsjs)",
+		"destination": "system-backend",
+		"csrfProtection": false,
+		"scope": "$XSAPPNAME.view",
+		"authenticationType": "xsuaa"
+	},{
 		"source" : "/(.*)",
 		"localDir" : "resources",
-		"scope": "$XSAPPNAME.viewPartners",
+		"scope": "$XSAPPNAME.view",
 		"authenticationType" : "xsuaa",
 		"replace" : {
 			"pathSuffixes" : ["index.html"],
