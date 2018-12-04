@@ -29,8 +29,37 @@ sap.ui.define([
 			this.getOwnerComponent().getModel().setProperty("/partnerNumberCreate", "689");
 			this.getOwnerComponent().getModel().setProperty("/partnerCountryCreate", "FRA");
 			
-			this.loadAllPartners();
+			this.initPartnersPane();
+		},
+		
+		initPartnersPane: function() {
+			var aUrl = "/system/xsjs/SessionInfo.xsjs?cmd=viewPartners";
+			var response = JSON.parse(jQuery.ajax({
+				url: aUrl,
+				method: "GET",
+				dataType: "json",
+				async: false
+			}).responseText);
+			if(response.scope){
+				var tabPartnersInfo = this.getView().byId("tabPartnersInfo");
+				tabPartnersInfo.setVisible(true);
+				this.loadAllPartners();
+			}
 			
+			aUrl = "/system/xsjs/SessionInfo.xsjs?cmd=createPartners";
+			response = JSON.parse(jQuery.ajax({
+				url: aUrl,
+				method: "GET",
+				dataType: "json",
+				async: false
+			}).responseText);
+			if(response.scope){
+				var newPartnerPanel = this.getView().byId("newPartnerPanel");
+				newPartnerPanel.setVisible(true);
+			}
+			
+			
+				
 		},
 		
 		onErrorCall: function(oError) {
@@ -154,7 +183,6 @@ sap.ui.define([
 
 		},
 		loadAllPartners: function(){
-			
 			var oTable = this.getView().byId("tblPartners");
 			var oModel = this.getOwnerComponent().getModel("partnerAddressModel");
 			

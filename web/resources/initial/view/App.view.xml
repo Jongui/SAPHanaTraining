@@ -18,11 +18,11 @@
 							<core:Fragment fragmentName="initView.view.PartnerProjects" type="XML" />
 						</Panel>
 					</IconTabFilter>
-					<IconTabFilter text="{i18n>partnersInfo}">
+					<IconTabFilter text="{i18n>partnersInfo}" visible="false" id="tabPartnersInfo">
 						<Panel expandable="true" expanded="false" headerText="{i18n>searchPartner}">
 							<core:Fragment fragmentName="initView.view.Partners" type="XML"/>
 						</Panel>
-						<Panel expandable="true" expanded="false" headerText="{i18n>newPartner}">
+						<Panel expandable="true" expanded="false" headerText="{i18n>newPartner}" id="newPartnerPanel" visible="false">
 							<core:Fragment fragmentName="initView.view.NewPartner" type="XML"/>
 						</Panel>
 					</IconTabFilter>

@@ -6,7 +6,7 @@
 	    { "name": "$XSAPPNAME.viewProjects", "description": "View projects" },
 	    { "name": "$XSAPPNAME.createProjects", "description": "Create projects"},
 	    { "name": "$XSAPPNAME.view", "description": "View app data only"}
-	],
+	], 
 	"role-templates": [
 		{ "name": "ProjectOpportunitiesViewPartners",
 		  "description": "Role for viewing parntersdata",
