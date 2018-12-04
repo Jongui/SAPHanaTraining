@@ -10,14 +10,18 @@
 		"source": "/partners/(.*)(.xsjs)",
 		"destination": "partners-backend",
 		"csrfProtection": false,
+		"scope": "$XSAPPNAME.create",
 		"authenticationType": "xsuaa"
 	}, {
 		"source": "/partners/(.*)(.xsodata)",
 		"destination": "partners-backend",
+		"csrfProtection": false,
+		"scope": "$XSAPPNAME.view",
 		"authenticationType": "xsuaa"
 	},{
 		"source" : "/(.*)",
 		"localDir" : "resources",
+		"scope": "$XSAPPNAME.view",
 		"authenticationType" : "xsuaa",
 		"replace" : {
 			"pathSuffixes" : ["index.html"],

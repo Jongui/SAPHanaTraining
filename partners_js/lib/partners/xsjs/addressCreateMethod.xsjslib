@@ -12,6 +12,7 @@ var SESSIONINFO = $.partners.xsjs.session;
 function addressCreate(param) {
 
 	try {
+		$.session.assertAppPrivilege("create");
 		var after = param.afterTableName;
 
 		//Get Input New Record Values
