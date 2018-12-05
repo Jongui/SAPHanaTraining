@@ -11,7 +11,6 @@ function callProcedure(partnerId){
 	$.response.setBody(JSON.stringify(results));
 }
 try {
-	$.session.assertAppPrivilege("createProjects");
 	var aCmd = $.request.parameters.get("cmd");
 	var partnerId = $.request.parameters.get("partnerId");
 	callProcedure(partnerId);

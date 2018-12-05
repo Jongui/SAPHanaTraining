@@ -5,7 +5,7 @@
 		"source": "/projects/(.*)(.xsjs)",
 		"destination": "projects-backend",
 		"csrfProtection": false,
-		"scope":"$XSAPPNAME.createProjects",
+		"scope":"$XSAPPNAME.viewProjects",
 		"authenticationType": "xsuaa"
 	},{
 		"source": "/projects/(.*)(.xsodata)",
@@ -29,7 +29,6 @@
 		"source": "/system/(.*)(.xsjs)",
 		"destination": "system-backend",
 		"csrfProtection": false,
-		"scope": "$XSAPPNAME.view",
 		"authenticationType": "xsuaa"
 	},{
 		"source" : "/(.*)",

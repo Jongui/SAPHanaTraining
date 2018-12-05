@@ -39,6 +39,12 @@ case "viewPartners":
 case "createPartners":
 	scopeCheck(aCmd);
 	break;
+case "createProjects":
+	scopeCheck(aCmd);
+	break;
+case "viewProjects":
+	scopeCheck(aCmd);
+	break;
 default:
 	$.response.status = $.net.http.INTERNAL_SERVER_ERROR;
 	$.response.setBody("Invalid Request Method");

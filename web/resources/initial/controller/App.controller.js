@@ -29,10 +29,33 @@ sap.ui.define([
 			this.getOwnerComponent().getModel().setProperty("/partnerNumberCreate", "689");
 			this.getOwnerComponent().getModel().setProperty("/partnerCountryCreate", "FRA");
 			
-			this.initPartnersPane();
+			this.initPartnersPanel();
+			this.initProjectsPanel();
 		},
 		
-		initPartnersPane: function() {
+		initProjectsPanel: function() {
+			var aUrl = "/system/xsjs/SessionInfo.xsjs?cmd=createProjects";
+			var response = JSON.parse(jQuery.ajax({
+				url: aUrl,
+				method: "GET",
+				dataType: "json",
+				async: false
+			}).responseText);
+			var tabCreateProject = this.getView().byId("tabCreateProject");
+			tabCreateProject.setVisible(response.scope);
+			
+			aUrl = "/system/xsjs/SessionInfo.xsjs?cmd=viewProjects";
+			var response = JSON.parse(jQuery.ajax({
+				url: aUrl,
+				method: "GET",
+				dataType: "json",
+				async: false
+			}).responseText);
+			var tabProjectSearch = this.getView().byId("tabProjectSearch");
+			tabProjectSearch.setVisible(response.scope);
+		},
+		
+		initPartnersPanel: function() {
 			var aUrl = "/system/xsjs/SessionInfo.xsjs?cmd=viewPartners";
 			var response = JSON.parse(jQuery.ajax({
 				url: aUrl,
@@ -40,9 +63,9 @@ sap.ui.define([
 				dataType: "json",
 				async: false
 			}).responseText);
+			var tabPartnersInfo = this.getView().byId("tabPartnersInfo");
+			tabPartnersInfo.setVisible(response.scope);
 			if(response.scope){
-				var tabPartnersInfo = this.getView().byId("tabPartnersInfo");
-				tabPartnersInfo.setVisible(true);
 				this.loadAllPartners();
 			}
 			
@@ -53,12 +76,8 @@ sap.ui.define([
 				dataType: "json",
 				async: false
 			}).responseText);
-			if(response.scope){
-				var newPartnerPanel = this.getView().byId("newPartnerPanel");
-				newPartnerPanel.setVisible(true);
-			}
-			
-			
+			var newPartnerPanel = this.getView().byId("newPartnerPanel");
+			newPartnerPanel.setVisible(response.scope);
 				
 		},
 		

@@ -1,8 +1,8 @@
 /*eslint no-console: 0, no-unused-vars: 0, dot-notation: 0, no-use-before-define: 0, no-redeclare: 0*/
 "use strict";
 
-$.import("system.xsjs", "session");
-var SESSIONINFO = $.system.xsjs.session;
+$.import("projects.xsjs", "session");
+var SESSIONINFO = $.projects.xsjs.session;
 
 /**
 @param {connection} Connection - The SQL connection used in the OData request
@@ -34,7 +34,7 @@ function projectCreate(param) {
 		pStmt = param.connection.prepareStatement("insert into \"ProjectsRequests.ProjectRequest\" " +
 													"(\"PROJECTREQUESTID\", \"PROJECTNAME\", \"PARTNER\", \"STARTDATE\", \"PLANNEDDAYS\") " +
 													"values(?,?,?,?,?)");
-		var formattedRequestID = pad_with_zeroes(projectRequestID, 10);
+		var formattedRequestID = padWithZeroes(projectRequestID, 10);
 		pStmt.setString(1, formattedRequestID.toString());
 		pStmt.setString(2, User.Details[0].PROJECTNAME.toString());
 		pStmt.setString(3, User.Details[0].PARTNER.toString());
@@ -50,9 +50,7 @@ function projectCreate(param) {
 	}
 }
 
-
-
-function pad_with_zeroes(number, length) {
+function padWithZeroes(number, length) {
     var my_string = '' + number;
     while (my_string.length < length) {
         my_string = '0' + my_string;
