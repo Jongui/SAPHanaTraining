@@ -18,7 +18,6 @@ sap.ui.define([
 			this.getOwnerComponent().getModel().setProperty("/procedureUrl", procedureUrl);
 			this.getOwnerComponent().getModel().setProperty("/partnerID", "0000000001");
 			
-			this.getOwnerComponent().getModel().setProperty("/partnerIDCreate", "0000000001");
 			this.getOwnerComponent().getModel().setProperty("/projectNameCreate", "New Project online");
 			this.getOwnerComponent().getModel().setProperty("/startDateCreate", "2018-12-21");
 			this.getOwnerComponent().getModel().setProperty("/plannedDaysCreate", 30);
@@ -204,9 +203,9 @@ sap.ui.define([
 		loadAllPartners: function(){
 			var oTable = this.getView().byId("tblPartners");
 			var oModel = this.getOwnerComponent().getModel("partnerAddressModel");
-			
 			function fnLoadMetadata() {
 				try {
+					
 					oTable.setModel(oModel);
 					oTable.setEntitySet("PartnersAddress");
 					var oMeta = oModel.getServiceMetadata();
@@ -224,6 +223,11 @@ sap.ui.define([
 				fnLoadMetadata();
 			});
 			fnLoadMetadata();
+			
+			// Load partners for the ComboBox
+			// var oModelPartners = this.getOwnerComponent().getModel("partnerModel");
+			// this.getView().setModel("partnerModel", oModelPartners);
+			
 		},
 		createAddressSuccess: function(){
 			
@@ -254,6 +258,15 @@ sap.ui.define([
 			mParams.error = this.onErrorCall;
 			oModel.create("/PartnersAddress", oEntity, mParams);
 			
+		},
+		change: function(oEvent){
+			var partnerId = oEvent.getParameter("selectedItem").getKey();
+			this.getOwnerComponent().getModel().setProperty("/partnerIDCreate", partnerId);
+		},
+		changePartnerProject: function(oEvent){
+			var partnerID = oEvent.getParameter("selectedItem").getKey();
+			this.getOwnerComponent().getModel().setProperty("/partnerID", partnerID);
+			this.callProcedure();
 		}
 	});
 });

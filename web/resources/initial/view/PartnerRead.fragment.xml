@@ -2,9 +2,11 @@
 	
 		<List width="100%">
 			<InputListItem label="{i18n>partnerId}">
-				<Input id="partnerId" value="{/partnerID}"/>
+				<ComboBox selectionChange="changePartnerProject" id="cmbPartnersRead" width="100%" 
+					items="{ path: 'partnerModel>/Partners' }">
+					<core:Item key="{partnerModel>PARTNERID}" text="{partnerModel>NAME}"/>
+				</ComboBox>
 			</InputListItem>
 		</List>
-		<Button press="callProcedure" text="{i18n>search}"/>
 
 </core:FragmentDefinition>
