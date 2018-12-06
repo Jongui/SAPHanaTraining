@@ -1,5 +1,5 @@
 {
-	"xsappname": "ProjectOpportunities",
+	"xsappname": "SAPHanaTraining",
 	"scopes": [ 
 		{ "name": "$XSAPPNAME.viewPartners", "description": "View partners" },
 	    { "name": "$XSAPPNAME.createPartners", "description": "Create partners"},
